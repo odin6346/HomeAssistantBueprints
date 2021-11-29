@@ -1,0 +1,40 @@
+blueprint:
+  name: Set target temperature at specific time
+  description: Sets a climate target to a specifc temperature at a set time everyday. The target can be one or multiple areas/entities/devices.
+  domain: automation
+  source_url: https://gist.github.com/wittypluck/4ecc8c8cf79ebc079d4c61f1e941c75b
+  input:
+    time_to_set:
+      name: Time
+      description: When should the temperature be set
+      selector:
+        time:
+    climate_target:
+      name: Thermostat
+      description: Climate target which will get the temperature update
+      selector:
+        target:
+          entity:
+            domain: climate
+    temp_to_set:
+      name: Temperature
+      description: Temperature to set on defined time
+      default: 19.5
+      selector:
+        number:
+          min: 10
+          max: 30
+          unit_of_measurement: degrees
+          step: 0.5
+
+trigger:
+  - platform: time
+    at: !input time_to_set
+
+mode: queued
+
+action:
+  - service: climate.set_temperature
+    target: !input climate_target
+    data:
+      temperature: !input temp_to_set
