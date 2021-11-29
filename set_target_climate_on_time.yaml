@@ -22,7 +22,7 @@ blueprint:
       selector:
         target:
           entity:
-            domain: input_select
+            domain: input_number
 
 trigger:
   - platform: time
