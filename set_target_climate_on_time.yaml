@@ -18,10 +18,11 @@ blueprint:
             domain: climate
     temp_to_set:
       name: Temperature
-      description: Temperature to set on defined time 3
+      description: Temperature to set on defined time
       selector:
         target:
           entity:
+            domain: input_number
 
 trigger:
   - platform: time
