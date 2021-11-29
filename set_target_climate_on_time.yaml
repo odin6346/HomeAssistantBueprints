@@ -8,7 +8,9 @@ blueprint:
       name: Time
       description: When should the temperature be set
       selector:
-        time:
+        target:
+          entity:
+            domain: input_datetime
     climate_target:
       name: Thermostat
       description: Climate target which will get the temperature update
